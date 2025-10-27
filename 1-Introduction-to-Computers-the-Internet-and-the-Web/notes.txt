@@ -1,0 +1,55 @@
+input unit
+output unit
+memory unit
+arithmetic and logic unit (ALU)
+central processing unit (CPU)
+secondary storage unit
+
+batch processing: only one job or task at a time
+multitasking
+timesharing
+
+'Apple Computer' popularized the phenomenon of personal computing, IBM introduced the first one named as 'IBM Personal Computer'.
+
+machine language: machine dependent
+assembly language
+high-level language
+
+assembler: assemblye => machine
+compiler: high-level => machine
+
+'Interpreter' programs: were developed to execute high-level language programs directly without the need for compiling them into machine language. Compiled programs execute much faster than interpreted programs. Interpreters are popular in program development environments. Once a program is developed, a compiled version can be produced to run most efficiently.
+
+Fortran
+COBOL
+Pascal
+Ada
+
+C is also hardware independent.
+C++, has its roots in C. OOP.
+Objects are essentially reusable software components that model items in the real world.
+Java
+
+BASIC, Visual Basic, Visual C++, Visual C#, .NET
+
+It has been estimated that as much as 80% of software costs are associated not with the original efforts to develop the software but with the continued evolution and maintenance of that software throughout its life time.
+
+C programs typically go through six phases to be executed:
+    edit => preprocess => compile => link => load => execute
+
+stdin
+stdout
+stderr
+
+Moore's Law
+
+ARPAnet
+packet switching
+The protocol for communicating over the ARPAnet became known as TCP-the Transmission Control Protocol
+IP-the Internet Protocol
+TCP/IP
+bandwidth
+
+World Wide Web
+
+KIS: keep it simple
