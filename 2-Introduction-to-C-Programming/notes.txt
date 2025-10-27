@@ -1,0 +1,19 @@
+On many systems, the preceding execution-time error causes a "segmentation fault" or "access violation". Such an error occurs when a user's program attempts to access a part of the computer's memory to which it does not have access privileges.
+
+Multiplication, division and remainder are said to be on the same level of precedence.
+
+Using redundant parantheses in complex arithmetic expressions can make the expressions clearer.
+
+The equality operator (==) should be read "double equals" and the assignment operator should be read "gets".
+
+Lines beginning with # are processed by the preprocessor before the program is compiled.
+
+statement terminator
+escape character
+escape sequance
+
+An identifier can be any length, but only the first 31 characters are required to be recognized by C compilers according to the C standard.
+
+Syntax errors == compile errors = compilte-time errors
+
+conversion specifier
