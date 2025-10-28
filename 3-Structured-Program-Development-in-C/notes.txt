@@ -1,0 +1,43 @@
+Pseudocode
+
+Sequential execution
+Transfer of control: Various C statements enable us to specify that the next statement to be executed may be other than the next on in sequence.
+goto statement
+goto-less programming
+
+control structures:
+    sequence structure
+    selection structure, if, if...else, switch
+    repetition structure: while, for, do...while
+
+flowchart
+control statement stacking
+control statement nesting
+
+if the expression evaluates to zero, it is treated as false, and if the expression evaluates to nonzero, it is treated as true.
+
+ternary operator (?:)
+
+the empty statement: it is possible to have no statement at all by placing a semicolon(;) where a statemenet would normally be.
+
+infinite loop
+
+An uninitilized variable contains a "garbage value" - the value stored in the memory location reserved for that variable.
+
+sentinel value
+
+float (floating-point number)
+cast operator
+
+explicit conversion (promosion): ex. float (_integer value_)
+
+Floating-point numbers are represented only approximately by most computers.
+Do not compare floating-point values for equality!
+
+where operator is one of the binary operators +, -, *, /, % (or others), can be written in the form:
+    variable operator= expression;
+    ex. total += 3;
+
+preincrement, postincrement || predecrement, postdecrement
+
+dangling else problem
