@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int ex3_15(void);
 int ex3_16(void);
@@ -19,10 +20,13 @@ int ex3_31(void);
 int ex3_32(void);
 int ex3_33(void);
 int ex3_34(void);
+int ex3_35(void);
+int ex3_36(void);
+int ex3_37(void);
 
 int main(void)
 {
-    ex3_34();
+    ex3_37();
 
     return 0;
 }
@@ -574,6 +578,62 @@ int ex3_34(void)
         if (i % 10 == 0)
             printf("\n");
 
+        i++;
+    }
+
+    return 0;
+}
+
+int ex3_35(void)
+{
+    int number;
+    int sevenCounter = 0;
+
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    while (number >= 1)
+    {
+        if (number % 10 == 7)
+            sevenCounter++;
+
+        number = number / 10;
+    }
+
+    printf("Number contains %d amount of %s\n", sevenCounter, sevenCounter == 1 ? "seven" : "sevens");
+
+    return 0;
+}
+
+int ex3_36(void)
+{
+    int i = 0;
+    int number;
+
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    while (i < number)
+    {
+        if (i % 2)
+            printf("* * * * * * * * ");
+        else
+            printf(" * * * * * * * *");
+
+        printf("\n");
+        i++;
+    }
+
+    return 0;
+}
+
+int ex3_37(void)
+{
+    int i = 1;
+
+    while (i < 100000)
+    {
+        printf("%.0f   ", pow(2, i));
         i++;
     }
 
