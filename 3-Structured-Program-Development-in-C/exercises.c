@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int ex3_15(void);
 int ex3_16(void);
@@ -19,10 +20,18 @@ int ex3_31(void);
 int ex3_32(void);
 int ex3_33(void);
 int ex3_34(void);
+int ex3_35(void);
+int ex3_36(void);
+int ex3_37(void);
+int ex3_38(void);
+int ex3_40(void);
+int ex3_42_encrypt(void);
+int ex3_42_decrypt(void);
+int ex3_43(void);
 
 int main(void)
 {
-    ex3_34();
+    ex3_43();
 
     return 0;
 }
@@ -576,6 +585,207 @@ int ex3_34(void)
 
         i++;
     }
+
+    return 0;
+}
+
+int ex3_35(void)
+{
+    int number;
+    int sevenCounter = 0;
+
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    while (number >= 1)
+    {
+        if (number % 10 == 7)
+            sevenCounter++;
+
+        number = number / 10;
+    }
+
+    printf("Number contains %d amount of %s\n", sevenCounter, sevenCounter == 1 ? "seven" : "sevens");
+
+    return 0;
+}
+
+int ex3_36(void)
+{
+    int i = 0;
+    int number;
+
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    while (i < number)
+    {
+        if (i % 2)
+            printf("* * * * * * * * ");
+        else
+            printf(" * * * * * * * *");
+
+        printf("\n");
+        i++;
+    }
+
+    return 0;
+}
+
+int ex3_37(void)
+{
+    int i = 1;
+
+    while (i < 100000)
+    {
+        printf("%.0f   ", pow(2, i));
+        i++;
+    }
+
+    return 0;
+}
+
+int ex3_38(void)
+{
+    float radius;
+    float diameter, circumference, area;
+    float pi = 3.14159;
+
+    printf("Enter a radius value(cm): ");
+    scanf("%f", &radius);
+
+    diameter = radius * 2;
+    circumference = pi * 2 * radius;
+    area = pi * radius * radius;
+
+    printf("Diameter: %.2f cm\nCircumference: %.2f cm\nArea: %.2f cm²\n", diameter, circumference, area);
+
+    return 0;
+}
+
+int ex3_40(void)
+{
+    float num1, num2, num3;
+
+    printf("Enter the three sides to check: ");
+    scanf("%f%f%f", &num1, &num2, &num3);
+
+    if (num1 + num2 > num3 && num1 + num3 > num2 && num2 + num3 > num1)
+        printf("It is a valid triangle!\n");
+    else
+        printf("It is not a valid triangle!\n");
+
+    return 0;
+}
+
+int ex3_41(void)
+{
+    int num1, num2, num3;
+
+    printf("Enter the three sides to check: ");
+    scanf("%d%d%d", &num1, &num2, &num3);
+
+    if (num1 + num2 > num3 && num1 + num3 > num2 && num2 + num3 > num1)
+        printf("It is a valid triangle!\n");
+    else
+        printf("It is not a valid triangle!\n");
+
+    return 0;
+}
+
+/*
+    4 basamaklı integerı kullanıcıdan alıp encrypt eden program.
+
+    kullanıcıdan integer deger iste,
+    integer'ın 4 basamaklı olduğundan emin ol,
+
+    digitlerine ayır integerı ve her digit için:
+        (digit + 7) % 10 ile o digiti değiştir.
+        ilk digiti üçüncü ile yer değiştir.
+        ikinci digiti dördüncüyle yer değiştir.
+
+    encyripted digiti printle.
+
+    başka bi pprogram yaz, yukarıdaki aşamalrı tersine işleyecek ve encrypted sayıyı decrypt edecek.
+*/
+
+int ex3_42_encrypt(void)
+{
+    int number;
+    int digit1, digit2, digit3, digit4;
+
+    do
+    {
+        printf("Enter the number: ");
+        scanf("%d", &number);
+    } while (number > 9999 || number < 1000);
+
+    digit1 = number % 10;
+    digit2 = number / 10 % 10;
+    digit3 = number / 100 % 10;
+    digit4 = number / 1000 % 10;
+
+    digit1 = (digit1 + 7) % 10;
+    digit2 = (digit2 + 7) % 10;
+    digit3 = (digit3 + 7) % 10;
+    digit4 = (digit4 + 7) % 10;
+
+    printf("Encrypted number: %d%d%d%d\n", digit2, digit1, digit4, digit3);
+
+    return 0;
+}
+
+int ex3_42_decrypt(void)
+{
+    int encryptedNumber;
+    int digit1, digit2, digit3, digit4;
+
+    do
+    {
+        printf("Enter the encrypted number: ");
+        scanf("%d", &encryptedNumber);
+    } while (encryptedNumber > 9999 || encryptedNumber < 1000);
+
+    digit1 = encryptedNumber % 10;
+    digit2 = encryptedNumber / 10 % 10;
+    digit3 = encryptedNumber / 100 % 10;
+    digit4 = encryptedNumber / 1000 % 10;
+
+    digit1 = (digit1 - 7 + 10) % 10;
+    digit2 = (digit2 - 7 + 10) % 10;
+    digit3 = (digit3 - 7 + 10) % 10;
+    digit4 = (digit4 - 7 + 10) % 10;
+
+    printf("Decrypted number: %d%d%d%d\n", digit2, digit1, digit4, digit3);
+
+    return 0;
+}
+
+int ex3_43(void)
+{
+    int num;
+    double product = 1;
+    double estimated_e = 1.0;
+    int power_of_e;
+    double estimated_e_with_power = 1;
+
+    do
+    {
+        printf("Enter a nonnegative integer: ");
+        scanf("%d", &num);
+
+        printf("Enter the power of e you want to calculate: ");
+        scanf("%d", &power_of_e);
+    } while (num < 0);
+
+    for (int i = 1; i <= num; i++)
+    {
+        product *= i;
+        estimated_e += 1.0 / product;
+        estimated_e_with_power += pow(power_of_e, i) / product;
+    }
+
+    printf("Factoriel of %d is = %.4lf\nEstimated e = %.4lf\nEstimated pow(e, %d) = %.4lf\n", num, product, estimated_e, power_of_e, estimated_e_with_power);
 
     return 0;
 }
