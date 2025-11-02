@@ -1,0 +1,66 @@
+modules in C are called functions
+divide and conquer
+
+With good function naming and definition, programs can be created from standardized functions that accomplish specific tasks, rather than being built by using customized code. This technique is called "ABSTRACTION".
+
+function prototype C++'tan alınmış.
+
+Functionlar "callar"'larına tekrar return edebilmek için "calling function" adresi "program execution stack" ("function call stack")'e "push"lanır.
+Her function invokation'ındaki local variablelar da program execution stack'te tutulur (activation record || stack frame).
+
+stack, LIFO (last-in-first-out).
+in => pushing
+out => popping
+
+JVM, garbage collection
+
+call-by-value
+call-by-reference
+
+srand(seed)
+rand()
+face = 1 + rand() % 6;
+n = a + rand() % b;
+
+enumeration constant
+enum
+
+storage class, storage duration, scope, linkage;
+storage class specifiers: auto, register, extern and static;
+
+An identifier's storage class determines its storage duration, scope and linkage.
+    Storage duration: period during which the identifier exists in memory.
+    Scope: where the identifier can be ferenced in a program.
+    Linkage: wheaher the identifier is known only in the current source file or in any source file with proper declarations.
+
+The four storage-class specifiers can be split into:
+    automatic storage duration -> keywords: auto, register;
+    static storage duration -> keywords: extern, static;
+
+Data machine language'e çevrildikten sonra hesaplamalar ve diğer processingler için register'lara gönderilir. Programın daha verimli çalışması için bazen bazı variableları register keyword'üyle işaretleyebiliriz, variable'ın sürekli memoryden getirilip kullanılması zamanı tasarruf edilmiş olunur. Ancak bilgisayarda yeterli register yoksa declare ettiğimiz register keywordlü variablelar ignore edilebilir.
+    günümüzde bu register atamasını compiler'lar sürekli tekrar eden variableları keşfedip kendisi halledebiliyor.
+
+    ex. register int counter = 1;
+        static int count = 1; numeric static storage variableları kendim initialize etmezsem otomatik olarak 0 başlar.
+
+Scope Rules
+    function scope,
+    file scope,
+    block scope,
+    function-prototype scope
+
+information hiding
+
+Labels (an identifier followed by a colon such as start:) are the only identifiers with function scope.
+
+Local variables declared static still have block scope, even though they exist from the time the program begins execution. Thus, storage duration does not affect the scope of an identifier.
+
+Recursion
+    base case(s),
+    recursive call, revursive step
+
+Most programmers simply assume the operands will be evaluated left to right. Strangely, Standard C does not specify the order in which the operands of most operators (including +) are to be evaluated.
+
+evaluation order'ı önemli olan programlarda tahmin ettiğimiz order'da oluşamaması ihtimali sebebiyle error oluşabilir.
+
+exponential complexity
