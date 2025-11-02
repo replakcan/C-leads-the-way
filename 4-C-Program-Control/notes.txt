@@ -1,0 +1,47 @@
+instead:
+    int i = 0;
+    while (i <= 10) {
+        /* operation */
+        i++;
+    }
+doing this:
+    while (++i <= 10)
+        /* operation */
+
+is fancier.
+
+continue
+break
+
+off-by-one error
+
+for (loop-control variable initialization; loop-continuation condition; increments/devrements loop-control variable) {}
+for (int i = 0; i <10; i++) {}
+
+int sum = 0;
+int number;
+for (number = 2; number <= 100; number += 2)
+    sum += number;
+
+for (number = 2; number <= 100; sum += number, number += 2)
+    ; /* empty statement */
+
+field with formatting %21.2f; 21 => print position
+
+EOF -end of flie char (system dependent)
+
+In switch statement when the default clause is listed last, the break statement is not required. But some programmers include this break for clarity and symmetry with other cases.
+
+long
+short
+signed char
+
+structured programming ile break ve continue işlevleri sağlanabilir ancak uygun kullanımda break ve continue perform faster.
+
+There is a tension between achieving quality software engineering and achieving the best performing software. Often one of these goals is achieved at the expense of the other.
+
+||, &&, !
+
+The && operator has a higher precedence than ||.
+
+assignment operator ile equality operator karıştırılabilir bu da logic error'a yol açabilir, bunu engellemek için x == 7 yerine 7 == x yazılabilir, double equals yerine bu senaryoda assignment operator kullanırsak syntax hatası yapmış oluruz dolayısıyla hatayı anında görebiliriz.
