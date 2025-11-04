@@ -17,12 +17,16 @@ int printDigitsOfRandomNumber(void);
 float findSmallestFloat(float, float, float);
 int isPerfectNumber(void);
 int isPrimeNumber(int);
+int qualityPoints(void);
+void coinToss(void);
+int flip(void);
+int multiplyTwoRandomNumbers(void);
 
 // extern int externalNumber = 2321312;
 
 int main(void)
 {
-    isPerfectNumber();
+    multiplyTwoRandomNumbers();
     // printf("externalNumber: %d\n", externalNumber);
 
     // register int count = 0;
@@ -309,3 +313,106 @@ int isPrimeNumber(int x)
 
     return 0;
 }
+
+int qualityPoints(void)
+{
+    int average;
+
+    do
+    {
+        printf("Enter student average(0-100): ");
+        scanf("%d", &average);
+    } while (average < 0 || average > 100);
+
+    if (average >= 90 && average <= 100)
+        return 4;
+
+    if (average >= 80 && average < 90)
+        return 3;
+
+    if (average >= 70 && average < 80)
+        return 2;
+
+    if (average >= 60 && average < 70)
+        return 1;
+
+    return 0;
+}
+
+void coinToss(void)
+{
+    srand(time(NULL));
+
+    int tails = 0;
+    int heads = 0;
+
+    for (int i = 0; i < 100; i++)
+    {
+        flip() ? tails++ : heads++;
+    }
+
+    printf("Tails: %d\nHeads: %d\n", tails, heads);
+}
+
+int flip(void)
+{
+    int x = rand();
+
+    return x % 2;
+}
+
+int multiplyTwoRandomNumbers(void)
+{
+    int studentAnswer;
+    int correctAnswer;
+
+    srand(time(NULL));
+
+    do
+    {
+        int x = rand() % 10;
+        int y = rand() % 10;
+
+        int wrongAns;
+        int successfulDialog;
+
+        correctAnswer = x * y;
+
+        printf("How much is %d times %d?\n", x, y);
+        scanf("%d", &studentAnswer);
+
+        if (correctAnswer == studentAnswer)
+        {
+            successfulDialog = rand() % 4;
+            printf("%s\n", successfulDialog == 0   ? "Very good!"
+                           : successfulDialog == 1 ? "Excellent!"
+                           : successfulDialog == 2 ? "Nice work!"
+                                                   : "Keep up the good work!");
+        }
+
+        else
+        {
+            do
+            {
+                wrongAns = rand() % 4;
+                printf("%s\n", wrongAns == 0   ? "No, please try again."
+                               : wrongAns == 1 ? "Wrong, try once more."
+                               : wrongAns == 2 ? "Don't give up!"
+                                               : "No. Keep trying.");
+                scanf("%d", &studentAnswer);
+
+                if (studentAnswer == correctAnswer)
+                {
+                    successfulDialog = rand() % 4;
+                    printf("%s\n", successfulDialog == 0   ? "Very good!"
+                                   : successfulDialog == 1 ? "Excellent!"
+                                   : successfulDialog == 2 ? "Nice work!"
+                                                           : "Keep up the good work!");
+                }
+            } while (studentAnswer != correctAnswer);
+        }
+    } while (correctAnswer == studentAnswer);
+
+    return 0;
+}
+
