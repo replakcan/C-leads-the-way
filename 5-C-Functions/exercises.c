@@ -21,12 +21,16 @@ int qualityPoints(void);
 void coinToss(void);
 int flip(void);
 int multiplyTwoRandomNumbers(void);
+int guessTheNumber(void);
+int calculateRecursivePower(int, int);
+int findNthFibonacciNumber(int);
 
 // extern int externalNumber = 2321312;
 
 int main(void)
 {
-    multiplyTwoRandomNumbers();
+
+    findNthFibonacciNumber(4);
     // printf("externalNumber: %d\n", externalNumber);
 
     // register int count = 0;
@@ -416,3 +420,79 @@ int multiplyTwoRandomNumbers(void)
     return 0;
 }
 
+int guessTheNumber(void)
+{
+    int number;
+    int guess;
+
+    char repeat = 'y';
+
+    srand(time(NULL));
+
+    while (repeat == 'y')
+    {
+        number = rand() % 1000 + 1;
+        printf("number: %d\n", number);
+
+        printf("I have a number between 1 and 1000.\n");
+        printf("Can you guess my number?\n");
+
+        printf("Please type your first guess: ");
+        scanf("%d", &guess);
+
+        if (guess == number)
+        {
+            printf("Excellent! You guessed the number!\n");
+
+            printf("Would you like to play again (y or n)? ");
+            scanf(" %c", &repeat);
+        }
+        else
+        {
+            do
+            {
+                if (guess > number)
+                    printf("Too high. Try again: ");
+                else
+                    printf("Too low. Try again: ");
+
+                scanf("%d", &guess);
+            } while (guess != number);
+
+            printf("Excellent! You guessed the number!\n");
+
+            printf("Would you like to play again (y or n)?");
+            scanf(" %c", &repeat);
+        }
+    }
+
+    return 0;
+}
+
+int calculateRecursivePower(int base, int pow)
+{
+    if (pow == 0)
+        return 1;
+
+    return base * calculateRecursivePower(base, pow - 1);
+}
+
+// 1 1 2 3 5 8 13 21 34 55 89 ...
+int findNthFibonacciNumber(int n)
+{
+    int a = 1;
+    int b = 1;
+
+    int temp;
+
+    for (int i = 1; i <= n - 2; i++)
+    {
+        temp = b;
+        b = a + b;
+        a = temp;
+    }
+
+    printf(" %dth fibonacci number: %d\n", n, b);
+
+    return b;
+}
