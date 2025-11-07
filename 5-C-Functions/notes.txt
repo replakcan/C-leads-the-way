@@ -64,3 +64,9 @@ Most programmers simply assume the operands will be evaluated left to right. Str
 evaluation order'ı önemli olan programlarda tahmin ettiğimiz order'da oluşamaması ihtimali sebebiyle error oluşabilir.
 
 exponential complexity
+
+scanf ile char alırken dikkat etmek lazım, enter'a bastığımızda boşluk karakterini scan'lediğimiz char'a atayabilir. Bunu önlemek için:
+
+    scanf(" %c", &var); 
+
+conversion specifier öncesi boşluk koyuyorum ki boşlukları ignore etsin.
