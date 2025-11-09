@@ -24,13 +24,17 @@ int multiplyTwoRandomNumbers(void);
 int guessTheNumber(void);
 int calculateRecursivePower(int, int);
 int findNthFibonacciNumber(int);
+void towerOfHanoi(int, char, char, char);
+int gcd(int, int);
+int ex5_43(void);
+int mystery(int, int);
 
 // extern int externalNumber = 2321312;
 
 int main(void)
 {
 
-    findNthFibonacciNumber(4);
+    printf("%d\n", mystery(5, 5));
     // printf("externalNumber: %d\n", externalNumber);
 
     // register int count = 0;
@@ -495,4 +499,49 @@ int findNthFibonacciNumber(int n)
     printf(" %dth fibonacci number: %d\n", n, b);
 
     return b;
+}
+
+void towerOfHanoi(int n, char source, char temp, char destination)
+{
+    if (n == 1)
+    {
+        printf("%c -> %c\n", source, destination);
+        return;
+    }
+
+    towerOfHanoi(n - 1, source, destination, temp);
+
+    printf("%c -> %c\n", source, destination);
+
+    towerOfHanoi(n - 1, temp, source, destination);
+}
+
+int gcd(int x, int y)
+{
+    if (y == 0)
+        return x;
+
+    return gcd(y, x % y);
+}
+
+// recursive input reversal
+int ex5_43(void)
+{
+    int c;
+
+    if ((c = getchar()) != EOF)
+    {
+        main();
+        printf("%c", c);
+    }
+
+    return 0;
+}
+
+int mystery(int a, int b)
+{
+    if (b == 1)
+        return a;
+
+    return a + mystery(a, b - 1);
 }
