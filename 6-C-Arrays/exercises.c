@@ -1,35 +1,3 @@
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#define WORD_SIZE 20
-
-int testPalindromeIterative(void);
-int testPalindromeRecursive(char *const wPtr, const int wRange);
-
-int main(void)
-{
-    char word[WORD_SIZE];
-    char testWord[WORD_SIZE];
-
-    printf("Enter the test subject: ");
-    gets(word);
-
-    int j = 0;
-
-    for (int i = 0; i < strlen(word); i++)
-    {
-        if (isalpha(word[i]))
-        {
-            testWord[j] = word[i];
-            j++;
-        }
-    }
-
-    printf("test subject: %s\n", testWord);
-
-    const int recPalindrome = testPalindromeRecursive(testWord, strlen(testWord));
-
-    printf("%d\n", recPalindrome);
 #include <stdlib.h>
 #include <time.h>
 #define SIZE 10
@@ -138,6 +106,7 @@ int testPalindromeRecursive(char *const wPtr, const int wRange)
 
     i++;
     return testPalindromeRecursive(wPtr, wRange - 1);
+}
 int calculateSalary(void)
 {
     int grossSale;
@@ -230,7 +199,7 @@ int airlineReservationSystem(int seats[])
     int limit = seatClass == 1 ? 5 : 10;
 
     for (; i < limit; i++)
-    {                                                                    
+    {
         if (seats[i] == 0)
             printf("%d ", i + 1);
     }
