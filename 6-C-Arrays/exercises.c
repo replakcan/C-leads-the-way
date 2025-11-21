@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 #include <stdio.h>
+=======
+>>>>>>> 85f26fb (solve chapter-6 conflict)
 #include <stdlib.h>
 #include <time.h>
 #define SIZE 10
@@ -74,6 +77,43 @@ int ex6_11(void)
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+int testPalindromeIterative(void)
+{
+    char word[20];
+
+    printf("Enter the test subject: ");
+    gets(word);
+
+    const int range = strlen(word);
+
+    int i = 0;
+    while (i != range / 2)
+    {
+        if (word[i] != word[range - (i + 1)])
+            return 0;
+
+        i++;
+    }
+
+    return 1;
+}
+
+int testPalindromeRecursive(char *const wPtr, const int wRange)
+{
+    static int i = 0;
+
+    if (wRange == 1)
+        return 1;
+
+    if (*(wPtr + i) != wPtr[wRange - 1])
+        return 0;
+
+    i++;
+    return testPalindromeRecursive(wPtr, wRange - 1);
+}
+>>>>>>> 85f26fb (solve chapter-6 conflict)
 int calculateSalary(void)
 {
     int grossSale;
@@ -166,7 +206,7 @@ int airlineReservationSystem(int seats[])
     int limit = seatClass == 1 ? 5 : 10;
 
     for (; i < limit; i++)
-    {                                                                    
+    {
         if (seats[i] == 0)
             printf("%d ", i + 1);
     }
