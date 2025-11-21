@@ -45,5 +45,21 @@ int main(void)
         int age;
     } Person;
 
-    Person people[10];
+    Person people[10]; // people, 10 tane Person barındıran bir array
+
+    union number // union member'ları aynı belleği paylaşıyor bu yüzden bir seferde sadece bir member'a ulaşabiliyorum.
+    {
+        int x;
+        double y;
+    };
+
+    union number value = {10};
+
+    double *ptr = &value.y;
+
+    value.x = 100;
+
+    // printf("%d\n%d\n", value.x, *ptr);
+
+    return 0;
 }
