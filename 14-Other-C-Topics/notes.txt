@@ -1,0 +1,53 @@
+Redirecting Input/Output on Linux/UNIX and Windows Systems
+    file processing kullanmadan input output stream'lerini kontrol ederek.
+    < redirect input symbol
+    | pipeline operator
+    > redirect output symbol
+    >> append output symbol
+
+Variable-Length Argument Lists
+    int printf(const char *format, ...);
+    <stdarg.h> header
+    va_list
+    va_start
+    va_arg
+    va_end
+
+Using Command-Line Arguments
+    argc, argv[]
+
+Notes on Compiling Multiple-Source-File Programs
+    internal linkage,
+    external linkage
+
+    If a function is not required outside a particular file, the principle of least priviliege should be enforced by usigin static keyword.
+
+    make, makefile
+
+Program Termination with exit and atexit
+    exit,
+    atexit,
+    EXIT_FAILURE
+    EXIT_SUCCESS
+
+volatile Type Qualifier
+
+Suffixes for Integer and Floating-Point Constants
+    174u
+    8385L
+    2837ul
+    1.28f
+    3.14159L
+
+tmpfile temporary file
+
+Signal Handling
+    interrupts,
+    <signal.h>
+    trap
+    raise
+    SIGABRT, SIGFPE, SIGILL, SIGINT, SIGSEGV, SIGTERM
+
+Dynamiv Memory Allocation: Functions calloc and realloc
+    void *calloc(size_t nmemb, size_t size);
+    void *realloc(void *ptr, size_t size);
