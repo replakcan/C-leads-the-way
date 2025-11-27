@@ -5,7 +5,7 @@
 
 void dealHand(const char *wSuit[], const char *wFace[]);
 void determineHandValue(const int *const handPtr, const int handSize);
-int checkIfArrayIncludesValue(const int const *arrPtr, const int arrSize, int value);
+int checkIfArrayIncludesValue(const int * const arrPtr, const int arrSize, int value);
 void sortHand(int *const ptr, const int size);
 void printArray(const int *const ptr, const int size);
 void determineHandValue(const int *const handPtr, const int handSize);
@@ -63,7 +63,7 @@ void dealHand(const char *wSuit[], const char *wFace[])
     determineHandValue(cardPositions, HAND_SIZE);
 }
 
-int checkIfArrayIncludesValue(const int const *arrPtr, const int arrSize, int value)
+int checkIfArrayIncludesValue(const int * const arrPtr, const int arrSize, int value)
 {
     for (int i = 0; i < arrSize; i++)
     {
@@ -94,7 +94,7 @@ void printArray(const int *const ptr, const int size)
         printf("%d%c", ptr[i], i == (size - 1) ? '\n' : '\t');
 }
 
-int isHandContainPairs(const int const *handPtr, const int handSize)
+int isHandContainPairs(const int * const handPtr, const int handSize)
 {
     int rankCount[13] = {0};
 
