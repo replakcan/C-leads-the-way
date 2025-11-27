@@ -1,29 +1,44 @@
 #include <iostream>
-using std::cin;
 using std::cout;
 using std::endl;
 
 #include <string>
-using std::getline;
 using std::string;
 
 class GradeBook
 {
 public:
-    void displayMessage(string courseName)
+    GradeBook(string name)
     {
-        cout << "Welcome to the Grade book for " << courseName << "!" << endl;
+        setCourseName(name);
     }
+
+    void setCourseName(string name)
+    {
+        courseName = name;
+    }
+
+    string getCourseName()
+    {
+        return courseName;
+    }
+
+    void displayMessage()
+    {
+        cout << "Wellcome to the grade book for\n"
+             << getCourseName() << "!" << endl;
+    }
+
+private:
+    string courseName;
 };
 
 int main()
 {
-    string nameOfCourse;
-    GradeBook myGradeBook;
+    GradeBook gradeBook1("CS101 Introduction to C++ Programming");
+    GradeBook gradeBook2("CS102 Data Structures in C++");
 
-    cout << "Please enter the course name:" << endl;
-    getline(cin, nameOfCourse);
+    cout << "gradeBook1 created for course: " << gradeBook1.getCourseName() << "\ngradeBook2 created for course: " << gradeBook2.getCourseName() << endl;
 
-    myGradeBook.displayMessage(nameOfCourse);
     return 0;
 }
