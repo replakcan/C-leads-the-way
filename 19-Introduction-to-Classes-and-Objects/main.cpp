@@ -6,10 +6,11 @@ using std::endl;
 
 int main()
 {
-    GradeBook gradebook1("First Book");
-    GradeBook gradebook2("Second Book");
+    GradeBook gradebook1("FirstBook", "Alperovski");
+    GradeBook gradebook2("SecondBook", "Mutlucavcav");
 
-    cout << "gradeBook1 created for course: " << gradebook1.getCourseName() << "\ngradeBook2 created for course: " << gradebook2.getCourseName() << endl;
+    gradebook1.displayMessage();
+    gradebook2.displayMessage();
 
     return 0;
 }
