@@ -136,17 +136,17 @@ void turnLeft(int *facePtr)
 }
 
 void moveForward(const int *const penPtr, int floor[][FLOOR_SIZE], const int floorSize, int *steps_forward, const int *const dirPtr, int *coords)
-void moveForward(const int *const penPtr, int floor[][FLOOR_SIZE], const int floorSize, int *steps_forward, const int *const dirPtr, int *const coords)
 {
 
-    int prevRow = *coords;
-    int prevCol = *(coords + 1);
+    int prevRow = coords[0];
+    int prevCol = coords[1];
 
     printf("   Enter amount: ");
     scanf("%d", steps_forward);
 
-    *coords += (*steps_forward) * (*dirPtr);
-    *(coords + 1) += (*steps_forward) * (*dirPtr + 1);
+    // update the current coords
+    coords[0] += (*steps_forward) * dirPtr[0];
+    coords[1] += (*steps_forward) * dirPtr[1];
 
     if (*penPtr == 1)
     {
