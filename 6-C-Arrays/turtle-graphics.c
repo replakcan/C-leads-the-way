@@ -150,13 +150,27 @@ void moveForward(const int *const penPtr, int floor[][FLOOR_SIZE], const int flo
 
     if (*penPtr == 1)
     {
-        /* for (int i = prevRow; i != *coords; i < *coords ? i++ : i--)
-        {
-        } */
+        int x = prevRow;
+        int y = prevCol;
 
-        for (int j = prevCol; j != *(coords + 1); j++)
+        while (x != coords[0])
         {
-            floor[0][j] = 1;
+            floor[x][prevCol] = 1;
+
+            if (prevRow > coords[0])
+                x--;
+            else
+                x++;
+        }
+
+        while (y != coords[1])
+        {
+            floor[prevRow][y] = 1;
+
+            if (prevCol > coords[1])
+                y--;
+            else
+                y++;
         }
     }
 }
