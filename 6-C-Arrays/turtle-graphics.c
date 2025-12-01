@@ -148,7 +148,7 @@ void moveForward(const int *const penPtr, int floor[][FLOOR_SIZE], const int flo
     coords[0] += (*steps_forward) * dirPtr[0];
     coords[1] += (*steps_forward) * dirPtr[1];
 
-    if (*penPtr == 1)
+    if (*penPtr == 1) // if the pen is down starts painting
     {
         int x = prevRow;
         int y = prevCol;
