@@ -103,8 +103,6 @@ void turnRight(int *facePtr)
             *(facePtr + 1) = 1;
         }
     }
-
-    printf("current direction: {%d, %d}\n", *facePtr, *(facePtr + 1));
 }
 
 void turnLeft(int *facePtr)
@@ -135,8 +133,6 @@ void turnLeft(int *facePtr)
             *(facePtr + 1) = -1;
         }
     }
-
-    printf("current direction: {%d, %d}\n", *facePtr, *(facePtr + 1));
 }
 
 // TODO [alper] update the moveForward print squares logic if the pen is down
