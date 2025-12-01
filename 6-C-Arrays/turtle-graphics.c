@@ -184,7 +184,7 @@ void printFloor(const int floor[][FLOOR_SIZE], const int fSize)
         for (int j = 0; j < fSize; j++)
         {
 
-            printf("%d", floor[i][j]);
+            printf("%d ", floor[i][j]);
         }
         printf("\n");
     }
