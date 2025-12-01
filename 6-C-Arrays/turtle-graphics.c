@@ -135,7 +135,7 @@ void turnLeft(int *facePtr)
     }
 }
 
-// TODO [alper] update the moveForward print squares logic if the pen is down
+void moveForward(const int *const penPtr, int floor[][FLOOR_SIZE], const int floorSize, int *steps_forward, const int *const dirPtr, int *coords)
 void moveForward(const int *const penPtr, int floor[][FLOOR_SIZE], const int floorSize, int *steps_forward, const int *const dirPtr, int *const coords)
 {
 
