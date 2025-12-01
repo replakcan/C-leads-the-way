@@ -173,6 +173,8 @@ void moveForward(const int *const penPtr, int floor[][FLOOR_SIZE], const int flo
                 y++;
         }
     }
+
+    floor[coords[0]][coords[1]] = 8;
 }
 
 void printFloor(const int floor[][FLOOR_SIZE], const int fSize)
