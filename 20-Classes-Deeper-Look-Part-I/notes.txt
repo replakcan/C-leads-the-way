@@ -1,0 +1,54 @@
+"preprocessor-wrapper" in header files to prevent the code in the header from being included into the same source-code file more than once.
+    #ifndef TIME_H
+    #define TIME_H
+
+    class Time{}
+
+    #endif
+
+
+"handles"
+    a name of an object,
+    a referance to an object
+    a pointer to an object
+
+
+"predicate fxns" to test the truth or falsity of conditions.
+utility fxns with private access specifier
+
+
+bazı "sticky" setting'ler var, setfill(), precision gibi, bunları default değerlerine sonradan getirmem lazım.
+
+class body'si dışında tanımladığım fxn'ları "::" ile class'a tie'layıp member-fxn yapabilirim.
+    AMA class içinde tanımlasaydım compiler default olarak member-fxn'ları inline fxn yapacaktı. Bunu explicitly inline keywordu ile yapmam gerekir, dışarıda tanımlarsam.
+
+composition-aggregation
+inheritance
+
+bi object tanımlandığında boyutu çok yüksekmiş gibi düşünülebilir, member-fxnlarından dolayı;
+    ANCAK bu doğru değil, sadece data-member'ları kadar yer kaplarlar. Tüm oluşturulan objectler
+    aynı member-fxn copy'sini kullanırlar.
+
+implementasyon ve interface dosyalarını ayırsam bile bazı veriler client-code'dan görülebilir;
+    MESELA private data-member isimleri, inline fxnlar.
+    Bunu önlemenin bir yöntemi var "proxy-class" oluşturmak.
+
+
+Constructors with default arguments
+
+Destructtors
+    ~Destructor(){}
+    Dtors are not called for automatic objects if the program terminates with a call to function "exit" or function "abort".
+
+termination housekeeping
+
+reference return etmek DANGEROUS!
+
+Default Memberwise Assignment
+    iki objeyi assignment operatörü ile ("=" ile) assign ettiğimde memberwise yani memberları üzerinden assign gerçekleşiyor.
+
+copy-constructors
+
+Pass-by-const-reference is a safe, good-programming alternative.
+
+Rapid Application Development(RAD)
