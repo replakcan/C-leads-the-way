@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+void displayBits(unsigned value);
+void doubleWithBitShifting(int *ptr);
+void packChars(void);
 int main(void)
 {
     /* struct part
@@ -10,7 +13,7 @@ int main(void)
 
     typedef struct part Part;
 
-    Part a, b[10], *ptr;
+    part a, b[10], *ptr;
 
     printf("Part number for struct a: ");
     scanf("%d", &a.partNumber);
@@ -24,7 +27,7 @@ int main(void)
     printf("number: %d\n", (ptr + 3)->partNumber);
     printf("name: %s\n", (ptr + 3)->partName); */
 
-    struct customer
+    /* struct customer
     {
         char lastName[15];
         char firstName[15];
@@ -73,9 +76,68 @@ int main(void)
 
     union integer _number;
 
-    scanf("%ld", &_number.b);
+    scanf("%ld", &_number.b); */
 
-    printf("%d\n", _number.b);
+    // printf("%d\n", _number.b);
 
+    /* Unsigned counter;
+    int intVal;
+
+    printf("Enter an integer: ");
+    scanf("%d", &intVal);
+
+    // displayBits(intVal);
+
+    printf("%d", intVal >> 4); */
+
+    int x = 5;
+    int *xPtr = &x;
+
+    doubleWithBitShifting(xPtr);
+    printf("x after = %d\n", x);
+
+    packChars();
+    
     return 0;
+}
+
+void displayBits(unsigned value)
+{
+    unsigned counter;
+
+    unsigned displayMask = 1 << __CHAR_BIT__ * sizeof(unsigned) - 1;
+
+    for (counter = 1; counter <= __CHAR_BIT__ * sizeof(unsigned); counter++)
+    {
+        putchar(value & displayMask ? '1' : '0');
+
+        value <<= 1;
+
+        if (counter % 8 == 0)
+        {
+            putchar(' ');
+        }
+    }
+    putchar('\n');
+}
+
+void doubleWithBitShifting(int *ptr)
+{
+    *ptr = *ptr << 1;
+}
+
+void packChars(void){
+  char a, b;
+  unsigned x, y;
+  
+  printf("Enter two chars: ");
+  scanf("%c%c", &a, &b);
+
+  x = a;
+  x = x << 8;
+  x = x | b;
+
+  printf("a = %u\n", a);
+  printf("b = %u\n", b);
+  printf("packed together output = %u\n", x);
 }
