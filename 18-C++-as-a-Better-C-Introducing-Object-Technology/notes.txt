@@ -1,0 +1,73 @@
+OOP => classes, encapsulation, objects, operator overloading, inheritance, polymorphism
+generic programming => function templates, class templates 
+
+original name for C++ was "C with classes"
+
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+
+software reuse
+
+"inline" fxns =>> 
+    inline keyword'ü ile fonksiyonu işaretliyorum. Compiler'a fonksiyonu gördüğün yerde kopyasını oluştur demiş oluyorum. Fxn call overhead'den kurtulmuş oluyorum ama kod boyutum artıyor.
+    The inline qualifier should be used only with small, frequently used fxns.
+
+"const" qualifier for 'principle of least privilage'
+
+type bool => true / false;
+
+pass-by-value / pass-by-reference
+    void passByValue(int value);
+    void passByReference(int &value);
+
+type-safe-linkage
+
+references as aliases
+    int count = 1;
+    int &cRef = count; // must be initialized.
+    cRef++;
+
+references to undefined variables are callad => dangling references
+
+default arguments, fxn name'in ilk occurance'ında tanımlanmalı.
+    int boxValume(int length = 1, int width = 1, int height = 1);
+
+unary scope resolution operator(::) to access a global variable
+    int number = 2;
+    int main(){
+        double number = 10.5
+        cout << ::number << endl // prints 2
+    }
+
+Function overloading
+    how the compiler differentiates overloaded fxns? by their 'signatures': combination of a fxn's name and its parameter types(in order)
+
+Overloaded operators
+
+Function Ttemplates
+    // Maximum.h
+    template <class T>
+    T maximum(T value1, T value2){
+        T maximumValue = value1;
+
+        if (value2 > value1)
+            maximumValue = value2;
+        
+        return maximumValue;
+    }
+    // #include "Maximum.h" in main to use 
+
+
+objects, attributes, behaviors
+OOD (object-oriented-design)
+
+encapsulation => information hiding => interfaces
+classes, clients(other classes or fxns that use the class)
+data members, member fxns
+a class is a "plan" for building an object of the class.
+associations,
+
+UML(Unified Modeling Language)
+    object-oriented analysis and design
