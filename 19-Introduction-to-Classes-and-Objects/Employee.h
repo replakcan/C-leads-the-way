@@ -4,11 +4,11 @@ using std::string;
 class Employee
 {
 public:
-    Employee(string firstN, string lastN, int salary_);
-    void setEmployee(string firstN, string lastN, int salary_);
-    void setFirstName(string firstN);
-    void setLastName(string lastN);
-    void setSalary(int salary_);
+    Employee(string, string, int);
+    void setEmployee(string, string, int);
+    void setFirstName(string);
+    void setLastName(string);
+    void setSalary(int);
     string getFirstName();
     string getLastName();
     int getSalary();

@@ -1,11 +1,11 @@
 class Account
 {
 public:
-    Account(int balance);
+    Account(int);
     int getAccBalance();
-    void setAccBalance(int balance);
-    void credit(int amount);
-    int debit(int amount);
+    void setAccBalance(int);
+    void credit(int);
+    int debit(int);
 
 private:
     int accBalance;

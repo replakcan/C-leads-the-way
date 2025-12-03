@@ -4,12 +4,12 @@ using std::string;
 class Invoice
 {
 public:
-    Invoice(string partNumber, string description, int quantityPurchased, int price);
-    void setInvoice(string partNumber, string description, int quantityPurchased, int price);
-    void setPartNumber(string partNumber);
-    void setDescription(string description);
-    void setQuantityPurchased(int quantityPurchased);
-    void setPrice(int price);
+    Invoice(string, string, int, int);
+    void setInvoice(string, string, int, int);
+    void setPartNumber(string);
+    void setDescription(string);
+    void setQuantityPurchased(int);
+    void setPrice(int);
     string getPartNumber();
     string getDescription();
     int getQuantityPurchased();
