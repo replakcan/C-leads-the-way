@@ -5,7 +5,21 @@ using std::cout;
 using std::setfill;
 using std::setw;
 
+#include <ctime>
+using std::localtime;
+using std::time;
+using std::time_t;
+using std::tm;
+
 #include "Time.h"
+
+Time::Time()
+{
+    time_t now = time(nullptr);
+    tm *localTime = localtime(&now);
+
+    setTime(localTime->tm_hour, localTime->tm_min, localTime->tm_sec);
+}
 
 Time::Time(int hr, int min, int sec)
 {
