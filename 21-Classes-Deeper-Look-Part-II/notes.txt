@@ -1,3 +1,5 @@
+Header Guards
+
 Mümkün olduğunca const keywordünü kullanmak principle of least privilage'ı destekler. Aynı zamanda modern compiler'lar const ile oluşturulan objeler vs için ek performans optimizasyonları sunabiliyor.
 
 const member-fxn'lar non-const versionları ile overload edilebilir.
@@ -76,7 +78,7 @@ static Class Members
     for classwide informations
     A class's static members exist even when no objects of that class exist.
         class Martian{
-            static martianCount = 0;
+            static int martianCount = 0;
         };
         Martian::martianCount; // binary-scope-resolution operator ile erişilebilir.
     
@@ -86,7 +88,7 @@ static Class Members
     The static members of the class need to be avaliable from any client code that access the file, so we cannot declare them static in the .cpp file--we declare them static only in the .h file.
 
     static member-fxn'lar *this return edemez çünkü objeden bağımsızlar.
-    const da declare edemem çünkü yine: const'un amacı bi fxn "objeyi modifiye edemesin"di.
+    static member-fxn'ları const da declare edemem çünkü yine: const'un amacı bi fxn "objeyi modifiye edemesin"di.
 
 Data Abstraction and Informatin hiding
     The client cares about WHAT functionality a stack offers, not about HOW that functionality is implemented. -> data abstraction.
@@ -105,3 +107,23 @@ Container Classes and Iterators
 Proxy Classes
     Allows you to hide even the private data of a class from clients of the class.
     forward class declaration.
+
+    Şu düşünülebilir: "E ben client-code'dan header-file'a tıklayınca private member'ları görmek istemiyordum, sadece interface gözüksün istiyordum. Proxy class kullandım, şimdi header'a tıklıyorum, private member'ın olduğu yerde Implementation class'ı var, e bu sefer ona tıklasam yine private dataları göremez miyim? EVET görebilirim anca bu sadece developer tarafında, implementation kodu da bende olduğu için görünür. Library'yi oluşturup bi client'e verdiğimde sadece compiled versiyonunu veriyorum interface'in. Implementation kısmına client sahip olmadığı için bakamıyor. (Hiding from compiler-Hiding from the Human/IDE misconception)
+
+    Ayrıca asıl proxy class benefit'i: proxy class olmadan yeni data eklesem class'a compile ettğimde tüm dosyalar compile olacak, proxy class oluşturduğumda ise sadece implementasyon dosyası tekrar compile olsa yeterli. 
+
+
+Critical Memory Management Issue(The Rule of Three)
+    Your code contains a severe bug regarding memory management. You are managing a raw pointer (ptr) in SavingsAccountInterface and deleting it in the destructor, but you have not defined a Copy Constructor or an Assignment Operator.
+        
+        void someFunction() {
+            SavingsAccountInterface acct1(1000.0);
+            SavingsAccountInterface acct2 = acct1; // Default copy constructor runs
+        } // Destructors run here
+
+        1.acct2 copies the pointer address from acct1. Both point to the same SavingsAccountImplementation.
+        2.acct1 is destroyed -> delete ptr happens.
+        3.acct2 is destroyed -> delete ptr happens again on the same address.
+        4.Result: Double Free Corruption (Program Crash).
+
+    If you must use raw pointers (C++98 style), you must implement the copy constructor to create a new Implementation object with the same values.
