@@ -1,0 +1,66 @@
+Operator Overloading
+    To use an operator on class objects, that operator must be overloaded--WITH THREE EXCEPTIONS: '=', '&', ','
+    The precedence of an operator cannot be changed by overloading.
+    It is not possible to create new operators.
+    When overloading (), [], -> or any of the assignment operators, the operator overloading function must be declared as a class member.
+    When an operator function is implemented as a member function, the leftmost (or only) operand must be an object (or a reference to an object) of the operator's class. If the left operand must be an object of a different class or a fundamental type, this operator function must be implemented as a global function. A global operator function can be made a friend of a class if that function must access private or protected members of that class directly.
+
+    class String{
+        public:
+        bool operator!() const;
+        bool operator<(const String &) const;
+        ...
+    };
+
+    bool operator!(const String &);
+    bool oprator>(const string &, const string &);
+
+    Two arrays cannot be meaningfully compared with equality operators or relational operators 
+        BECAUSE: array names are const pointers and a constant pointer cannot be used on the left side of an assignment operator. 
+
+    Remember, a program can invoke ONLY the const member fxns of a CONST object. Çünkü sen o objeyi zaten dataları mutate edilemesin diye const oluşturuyorsun. Compiler da doğal olarak sana, const dışında(data mutate etmediğinin kanıtı olan const member fxnlar dışında) member fxn çağırmana izin vermeyecek.
+
+
+copy ctor:
+    Array(int = 10);
+    Array(const Array &);
+
+    Array::Array(int arraySize){}
+
+    Array::Array(const Array &arrayToCopy)
+        : size(arrayToCopy.size)
+    {
+        ptr = new int[size];
+        ...
+    }
+
+    copy constructor içersinde yeni pointer için yeni dinamik memory allocate etmeseydim target obje ile aynı memory address'ini göstereceklerdi. Çıkışta problem çikardi.(Literally çıkışta, objelerin dtor'ları çağırılırken aynı ptr adresi reallocate edilmeye çalışılacaktı ve *boom CRASH).
+
+
+Conversion constructors--single argument constructors that turn objects of other types into objects of a particular class.
+    A conversion operator (also called a cast operator) can be used to convert an object of one class into an object of another class or into an object of a fundamental type. 
+        A::operator char *()const;
+        A::operator OtherClass() const;
+        A::operator int() const;
+    
+    mesela cout << s; ile normalde char yazdırmayı bekliyorken compiler, user-defined A class'ında cast operatorü ile temporary char * oluşturularak yazdırılabilir böylece "<<" operatörünün de overload edilmesine gerek kalınmaz.
+
+    d1.operator++();
+    Date &operator++();
+    Date &operator++(Date &);
+
+    operator++(0); // 0 dummy value, compiler'a hangisini seçmesi gerektiğini anlatıyor signature'u değiştirerek
+    Date operator++(int);
+    operator++(d1, 0);
+    Date operator++(Date &, int);
+
+    BURADA DIKKAT ÇEKILMESI GEREKEN DURUM: prefix ve postfix operatörlerinin return değerleri.
+        postfix increment temp değer oluşturup onu dönüyor, bu loop'larda vs memory problemi çıkarabilir dikkat edilmeli.
+
+    Accidentally Using a Single-Argument Constructor as a Conversion Constructor
+        şimdiiiiiiiiii diyelim ki single argument ctor'um var. Compiler tüm single-argument ctor'ları conversion constructor sanıyor.
+        başka bir member-fxn'da argüman olarak int o user-defined class objesini alıyorsam ve o member-fxn'u çağırıp ona int argüman verirsem,
+        int argüman alan versiyonu olmadığı için o fxn'un, compiler gidip int'i argüman alan conversion-constructor'ı çağırıp yeni array oluşturacak.
+        BEKLENMEDİK PROBLEMLERE YOL AÇABİLİR!!!! :O!
+
+        Bu yüzden yanışlıkla implicit conversion-ctor olarak kullanılmasını istemediğim single-argument ctorları "expilicit" keyword'ü ile işaretliyorum.
