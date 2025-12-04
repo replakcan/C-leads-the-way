@@ -1,0 +1,107 @@
+Mümkün olduğunca const keywordünü kullanmak principle of least privilage'ı destekler. Aynı zamanda modern compiler'lar const ile oluşturulan objeler vs için ek performans optimizasyonları sunabiliyor.
+
+const member-fxn'lar non-const versionları ile overload edilebilir.
+    
+void Time::printUniversal() const{}
+void Time::printStandard(){}
+
+Member Initializer Syntax
+    Increment::Increment(int c, int i) : count(c), increment(i){}
+    Tüm data-member'lar bu şekilde initialize edilebilir
+        ANCAK const olarak tanımlı olanlar ve reference tipinde olanlar member-itit-syntax kullanmak ZORUNDA.
+    Ayrıca member-init syntax'ı constructor body'sinden öne çalıştığına dikkat.
+
+Composition
+    has-a relationship
+    host-objects
+    composition ilişkisiyle host obje constructor'ında, member objenin default copy constructor'ı compiler tarafından oluşturulup kullanılıyor.
+
+friend fxns and friend Classes
+    A friend fxn of a class is defined outside that class's scope, yet has the right to access the non-public (and public) members of the class.
+    Friendship is granted, not taken! ALSO:
+        Friendship relation is neither symmetric nor transitive.
+
+        Bazıları, friendship kavramının OOP'ta information hiding'i corrupt ettiğini ve zayıflattığını düşünüyormuş.
+        Bana sorarsanız şu anki düşüncem bunun gerçek hayattaki friendship kavramına süper uyduğu yönünde,
+            doğru classlar veya fonksiyonlarla arkadaşlık ilişkisi kurmazsak sırlarımız kötü emeller için açığa çıkarılabilir.
+            Bu yüzden arkadaşlık kuracağımız fxn ve classları iyi seçmemiz lazım:p.
+        
+    class Count{
+        friend void setX(Count &, int); // friend fxn private data-member'i modifiye edebiliyor.
+        public:
+            Count() : x(0){}
+            void print() const {cout << x <<endl;}
+        private:
+            int x;
+    }
+
+Using the this Pointer
+    Every object has access to its own address through a pointer called 'this' (a C++ keyword).
+    An object's this pointer is not part of the object itself--i.e., the size of the memory occupied by the tis pointer is not reflected in the result of a sizeof operation on the object. (passed implicitly by the compiler to each of the object's 'non-static' member fxns)
+        x = 12;
+        this->x = 12; // pointer notation
+        (*this).x = 12; // dereferencing the pointer first
+
+    cascadeed fxn calls with this keyword
+        by returning *this with member-fxns, you can chain member-fxns.
+            class Time{
+                public:
+                    ...
+                    Time &setTime(int, int, int){
+                        ...
+
+                        return *this;
+                    }
+                    ...
+                private:
+                    ...
+            };
+        
+Dynamic Memory Management with Operators 'new' and 'delete'
+    Time *timePtr;
+    timePtr = new Time; // allocate with new keyword
+    delete timePtr; // deallocate the memory with delete keyword, if you don't do this, memory leak will appear.
+
+    double *ptr = new double(3.14159);
+
+    int *gradesArray = new int[10];
+    delete [] gradesArray; // first calls the dtor of every element in the array.
+
+    Employee *e1Ptr = new Employee();
+    
+    delete e1Ptr;
+    e1Ptr = 0; // disconnect pointer from free-store space
+
+static Class Members
+    for classwide informations
+    A class's static members exist even when no objects of that class exist.
+        class Martian{
+            static martianCount = 0;
+        };
+        Martian::martianCount; // binary-scope-resolution operator ile erişilebilir.
+    
+    const static int ve enum değerleri compile-time constant kabul edilir -> derleyici bunları sınıf içinde sabit gibi görebilir.
+    Diğer tüm static data member’lar -> class içinde initialize edilemez.
+
+    The static members of the class need to be avaliable from any client code that access the file, so we cannot declare them static in the .cpp file--we declare them static only in the .h file.
+
+    static member-fxn'lar *this return edemez çünkü objeden bağımsızlar.
+    const da declare edemem çünkü yine: const'un amacı bi fxn "objeyi modifiye edemesin"di.
+
+Data Abstraction and Informatin hiding
+    The client cares about WHAT functionality a stack offers, not about HOW that functionality is implemented. -> data abstraction.
+    Many programming languages emphasize actions. In these languages, data exists to support the actions that programs must take.
+        Data is "less interesting" than actions. Data is "crude".
+        Only a few built-in data types exist, and it is difficult for programmers to create their own types. C++ and the object-oriented style of programming elevate the importance of data. The primary activities of OOP in C++ are the creation of types and expression of the interactions among objects of those types. To create languages that emphasize data, the programming-languages community needed to formalize some notions about data. The formalization we consider here is the notion of "abstract data types(ADTs)", which improve the program development process.
+
+    The point is that even the built-in data types provided with programming languages lie C++ are really only approximations or imperfect models of real-world concepts and behaviors. Types like int, double, char and others are all examples of abstract data types. They are essentially ways of representing real-world notions to some satisfactory level of precision within a computer system.
+
+arithmetic overflow
+
+Container Classes and Iterators
+    also called collection classes: classes designed to hold collections of objects.
+    An iterator is an object that "walks through" a collection, returning the next item (or performing some action on the next item).
+
+Proxy Classes
+    Allows you to hide even the private data of a class from clients of the class.
+    forward class declaration.
