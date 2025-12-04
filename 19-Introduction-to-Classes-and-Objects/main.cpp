@@ -8,6 +8,7 @@ using std::string;
 #include "GradeBook.h"
 #include "Account.h"
 #include "Invoice.h"
+#include "GradeBook.h"
 
 int main()
 {
