@@ -1,0 +1,34 @@
+access-specifier labels:
+    public-private-protected
+
+data-hiding
+
+#include <string>
+std::string;
+std::getline;
+
+getline(cin, varName);
+
+set fxns can be called as mutators, since they mutate data-members
+get fxns can be called as accessors
+
+constructor - ctor
+destructor - dtor
+
+default constructor
+
+data member'ları constructor içinde direkt set edebilirim ancak bunu yapmak yerine constructor içinde setter fxn'u çağırıyorum. Böylece data validasyon logic'ini constructor yerine setter'da tanımlayabilirim.
+
+driver-program = main'in olduğu file
+
+client-code, oluşturudğumuz user-defined type'ın implementasyonu hakkında bilgi sahibi olmamalı.
+    bu yüzden header-file ile implementasyon dosyasını ayırmamız gerek. Yoksa client header-file'ın içine bakarak kendi client kodunu yazmaya kalkabilir.
+
+Seperating Interface from Implementation
+    header-file'daki class definition'da fxnları prototipleriyle değiştiriyorum.
+    implementasyon dosyasında fxn içeriklerini oluşturuyorum.
+
+    binary-scope-resolution operator
+        implementasyon dosyasında:
+            #include "GradeBook.h"
+            Gradebook::Gradebook(){} // ctor
