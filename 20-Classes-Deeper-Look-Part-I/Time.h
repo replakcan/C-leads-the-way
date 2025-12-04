@@ -4,8 +4,8 @@
 class Time
 {
 public:
-    Time(int = 0, int = 0, int = 0);
-
+    Time();
+    Time(int, int, int);
     void setTime(int, int, int);
     void setHour(int);
     void setMinute(int);
