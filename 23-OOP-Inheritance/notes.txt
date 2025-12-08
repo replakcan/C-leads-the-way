@@ -1,0 +1,57 @@
+base class - derived class
+superclass - subclass // JAVA
+
+single inheritance
+multiple inheritance
+
+public, private, protected inheritance
+
+is-a relationship
+
+UML diyagramlarında neden inheritance okları base-class'a doğru yönelir'in sebebi is basically: inheritance'ın is-a relationship kurması,
+    class is a -> class oluyor yane.
+
+class TwoDimensionalShape : public Shape
+
+friend fxns are not inherited
+
+member'ları protected tanımlarsam, o class'tan türeyen derived class'lar o member'lara ulaşabilir: BaseClass::member syntax'ı ile.
+
+// ComissionEmployee.h
+class ComissionEmployee{
+    public:
+        ComissionEmployee(string ,int);
+}
+
+// BasePlusComissionEmployee.h
+#include "ComissionEmployee.h"
+class BasePlusComissionEmployee : public ComissionEmployee {
+    public:
+        BasePlusComissionEmployee(string x, int y){
+            ComissionEmployee(x, y);
+        } 
+}
+
+or in separate implementation file:
+// BasePlusComissionEmployee.cpp
+    BasePlusComissionEmployee::BasePlusComissionEmployee(string x, int y)
+        : ComissionEmployee(x, y)
+        {
+            /* ComissionEmployee'den farklı bi setter lazımsa o burada set edilecek, veya memberwise init syntax ile ayrıca olabilir? */
+        }
+
+
+base-class'ın private datalarına derived class'tan direkt olarak erişemiyoruz
+    erişmenin bi yolu base-class'ta private yerine protected data-member kullanmak:
+        AMA bunun problemi: dataya direkt erişirim, base-class'ın setter'ını kullanmadan:
+            bu da setter'da bi validasyon uygulanmışsa onu bypass etmeme sebep oluyor, istenmeyen durum.
+    erişmenin diğer ve doğru yolu base-class'tan inherit edilen fxn'lar üzerinden olmalı.
+        implement ederken ördek:
+            double BasePlusComissionEmployee::earnings() const{
+                return getBaseSalary() + ComissionEmployee::earnings();
+            }
+
+inherit edilen member-fxn'u farklı signature ile derived class'ta tanımlamak, base-class'taki versiyonunu gizler.
+    base-classtakine :: ile ulaşmaya çalıştığımda fail olurum
+        
+private ve protected inheritance "is-a" ilişkisi oluşturmaz çünkü member'ların derived'a geçişi public'teki gibi olmuyor.
