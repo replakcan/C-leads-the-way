@@ -63,4 +63,14 @@ Conversion constructors--single argument constructors that turn objects of other
         int argüman alan versiyonu olmadığı için o fxn'un, compiler gidip int'i argüman alan conversion-constructor'ı çağırıp yeni array oluşturacak.
         BEKLENMEDİK PROBLEMLERE YOL AÇABİLİR!!!! :O!
 
-        Bu yüzden yanışlıkla implicit conversion-ctor olarak kullanılmasını istemediğim single-argument ctorları "expilicit" keyword'ü ile işaretliyorum.
+        Bu yüzden yanışlıkla implicit conversion-ctor olarak kullanılmasını istemediğim single-argument ctorları "explicit" keyword'ü ile işaretliyorum.
+
+C++’ta bir copy constructor, mevcut bir nesnenin üye değerlerini kopyalayarak yeni bir nesne oluşturur.
+Eğer sınıf dinamik bellek (heap) kullanıyorsa, kendi copy constructor’ını yazmalısın, yoksa kopyalanan nesneler aynı belleği paylaşır → bu hataya yol açar.
+
+Dinamik bellek kullanan sınıflar genellikle üç özel fonksiyonu birlikte yazar:
+    Destructor
+    Copy constructor
+    Assignment operator (operator=)
+
+Bu üçüne birlikte "Rule of Three" denir.
