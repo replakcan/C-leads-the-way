@@ -9,9 +9,7 @@ using std::endl;
 int main()
 {
     Package p1("Alper", "mecidiyeKöy", "Istanbul", "Marmara", "34", "Mutlu", "mutluAdres", "mutluCity", "mutluState", "mutluZip", 12.4, 23.5);
-
     TwoDayPackage p2("Alper", "mecidiyeKöy", "Istanbul", "Marmara", "34", "Mutlu", "mutluAdres", "mutluCity", "mutluState", "mutluZip", 12.4, 23.5, 10);
-
     OverNightPackage p3("Alper", "mecidiyeKöy", "Istanbul", "Marmara", "34", "Mutlu", "mutluAdres", "mutluCity", "mutluState", "mutluZip", 12.4, 23.5, 10);
 
     double cost = p1.calculateCost();
