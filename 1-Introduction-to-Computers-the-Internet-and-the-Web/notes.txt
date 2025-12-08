@@ -15,7 +15,7 @@ machine language: machine dependent
 assembly language
 high-level language
 
-assembler: assemblye => machine
+assembler: assembly => machine
 compiler: high-level => machine
 
 'Interpreter' programs: were developed to execute high-level language programs directly without the need for compiling them into machine language. Compiled programs execute much faster than interpreted programs. Interpreters are popular in program development environments. Once a program is developed, a compiled version can be produced to run most efficiently.
