@@ -1,0 +1,87 @@
+"program in general" rather than "program in specific"
+ virtual fxns and dynamic binding
+ abstract base class
+ abstract-concrete
+ RTTI - runtime type information
+ dynamic casting
+
+ Polymorphism occurs when a program invokes a virtual function through a base-class pointer or reference
+    --C++ dynamically (at execution time) chooses the correct function for the class from which the object was instantiated.
+
+
+BaseClass x();
+DerivedClass y();
+BaseClass *baseClassPtr = 0;
+DerivedClass *derivedClassPtr = 0;
+
+baseClassPtr = &y;
+baseClassPtr->print(); // handler yani pointer'ın print fxn'u çalışır(base-class'ın). point ettiği objenin print fxn'u çalışmaz.
+    ||=> base-class üzerinden, derived-class'a özel member çağırmaya çalışırsam compiler error verir. Çünkü pointer'ın gösterdiği yerde öyle bir fxn tanımlı değil.
+        The handle can invoke ONLY those functions that are members of that handle's associated class type.
+        EĞER derived-class specific member'lara da erişmek istiyorsam "downcasting" yapabilirim. expilictly. // downcasting potentially dangerous operation
+        Downcasting allows a program to perform a derived-class-specific operation on a derived-class object pointed to by a base-class pointer.  
+
+derivedClassPtr = &x; // compiler error
+EĞER ERROR VERMESEYDI:
+    derived class'ta base-class'tan ayrılan özgün member'lar olabilir. Doğal olarak derived class pointer'ı ile o fxn'ları kullanabiliyor olmalıyım.
+    derivedClassPtr->özgünfxn() yapmaya çalıştığımda point edilen objenin--base-class'ın, normalde derived-obje olsaydı yer alan memory adresinde o özgün fxn'u arayacak compiler ancak YOK. orada memory adresinde herhangi bir ne varsa cortlamasına yol açabilir. büyük problem. iyi ki compiler error veriyor yani.
+
+virtual fxn oluşturarak point edilen objenin fxn'unu çağırabildiğimiz senaryoda polymorphic davanışı elde etmiş olacaĞaaz(soon enough!).
+
+baseClassPtr ile derivedClass obje'ye spesifik member-fxn'u çağırmak istiyordum ancak sadece handler'ın class'ında tanımlı member-fxn'lara ve base-class'taki halleriyle erişebiliyordum.
+Bunu aşmak için, point edilen objenin fxn'unu çağırabilmek için base-class'ta o member-fxn'u "virtual" keyword'ü ile işaretliyorum, böylece handler'ın değil, point edilen objenin fxn'u çağırılabilir hale geliyor. Poliformik davranış burada. Compiler dynmaic olarak runtime'da bu işlemi gerçekleştiriyor.
+    örn virtual fxn declaration: virtual void draw() const;
+dynmaic binding || late binding
+dot operator'ü ile objenin ismiyle ulaşmaya çalışsam static binding olur, compile time'da resolve olur. Bu polymorphic davranış değil. Polymorphism için pointer üzerinden olmalı.
+
+Abstract Classes and Pure virtual functions
+Ya bu konu içimi kıpır kıpır ediyor çünkü bu kitapta mükemmel tanımlamalar var. Belki de bu tanım zaten olması gereken ve mükemmel olmayan bir tanım ancak başka kaynaklardan okuduklarım bunun yanında fazla cacıki kalmış olacak ki bu tanıma absolute saygı duyuyorum.
+
+Abstract class'lar obje instant'ı oluşturabilmeye yeter bilgiyi içermiyor, fazla generic'ler. Mesela birçok kişiye üçe kadar sayıcam ve bana bi şekil söyleyeceksiniz dediğimde hepsinin aynı şekli söyleme ihtimali çok düşüktür. Ancak ben bu şekil class'ını base-class olarak kullanırsam anlamlı olur. Incomplete class'lardır bunlar, onları tanımlayacak olan class'ları inheritance bağıyla oluştururum ve işte o classlar concrete class olur.
+Bir class'ı abstract yapmanın yolu, bir veya daha fazla virtual fxn'unu "pure" hale getirmektir.
+    virtual void draw() const = 0; // pure virtual fxn by the "= 0" pure specifier.
+    virtual fxn'lardan farkı, virtual fxn, derived class'lara o fxn'u override etme seçeneği sunar. pure virtual fxn'da bu bir zorunluluktur. Sadece virtual olursa derived class override etmeyip base-class implementation'unu kullanabilir ancak pure virtual fxn'ların implementation'ı yoktur.
+
+Belki abstract class'lardan obje oluşturamayız ama pointer oluşturup o pointer'ın derived class'lara point etmesini sağlayıp polymorphic yapı oluşturabiliriz.
+
+implementation inheritance // java'da x extends y
+    base-class'ta fxnların base halleri implement edilir.
+interface inheritance // java'da x implements y
+    base-class'ta fxnlar pure virtual, concrete class oluşturmak için her derived class kendi implementasyonunu override ederek yapar.
+
+Base-class'ta tanımlanan virtual fxn'lar tüm inheritance boyunca virtual oluyor, expilictly virtual keywordünü kullanmak gerekmez ama good programming experience adına iyi olur.
+
+Under the Hood
+    When C++ compilse a class that has one or more virtual fxns, it builds a virtual fxn table (vtable) for that class.
+    triple indirection.
+    see deitel for further explanation...
+
+Runtime Type Information(RTTI) and dynamic casting
+
+    ...
+    vector < Employee * > employees(4);
+
+    // vector içindeki her employee'nin boyutu farklı, o yüzden her employee.size()'ı kadar iterate ediyorum döngüde.
+    for(size_t i = 0; i < employees.size(); i++){
+        employees[i]->print();
+        cout <<endl;
+
+        BasePlusComissionEmployee *derivedPtr = dynamic_cast < BasePlusComissionEmployee * >(employees[i]);
+
+        if(derivedPtr != 0){
+            double oldBaseSalary = derivedPtr->getBaseSalary();
+            derivedPtr->setBaseSalary(1.10 * oldBaseSalary);
+        }
+
+        cout << employees[i]->earnings() << endl;
+    }
+    // include typeinfo before using typeid
+    for(size_t j = 0; j < employees.size(); j++){
+        cout << "deleting object of " << typeid(*employees[j]).name() << endl;
+
+        delete employees[j];
+    }
+    ...
+
+If a class has virtual fxns, provide a virtual dtor, even if one is not required for the lass. Classes derived from this class may contain dtors that must be called properly.
+Ctors can't be declared virtual.
